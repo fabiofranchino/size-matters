@@ -1,0 +1,82 @@
+<html>
+
+    <head>
+        <script src="node_modules/d3/build/d3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="node_modules/normalize.css/normalize.css">
+
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="template.js"></script>
+
+    </head>
+
+    <body class="fluid">
+
+        <div class="row">
+            <div class="one">
+                <svg fit height="100"></svg>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="one">
+                <svg fit ratio="1 1"></svg>
+            </div>
+            <div class="two">
+                <svg fit ratio="2 1"></svg>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="one">
+                <svg fit ratio="1 0.5"></svg>
+            </div>
+            <div class="one">
+                <svg fit ratio="1 2"></svg>
+            </div>
+            <div class="one">
+                <svg fit height="100"></svg>
+            </div>
+            <div class="one">
+                <svg fit ratio="1 0.5"></svg>
+            </div>
+        </div>
+
+
+        <script>
+            
+            var vis = myViz()
+
+            var dataset = d3.range(7).map(d => {
+                return d3.range(3).map(d => Math.random())
+            })
+
+            var svg = d3.selectAll('svg')
+                .data(dataset)
+                .call(vis)
+
+            d3.select(window).on('resize', () => {
+                onResize()
+            }).dispatch('resize')
+
+            function onResize(){
+            
+                d3.selectAll('[fit]').each(function() {
+                    var ratio = d3.select(this).attr('ratio')
+                    var factor = (ratio) ? (ratio.split(' ')[1] / ratio.split(' ')[0]) : 1
+                    var computedW = parseInt(window.getComputedStyle(this).width.split('px')[0])
+                    var attrH = d3.select(this).attr('height')
+                    var calcH = (attrH) ? attrH : parseInt( computedW * factor )
+                    d3.select(this)
+                        .attr('viewBox', '0 0 ' + parseInt(computedW) + ' ' + parseInt(calcH))
+                        .call(vis.width(computedW).height(calcH))
+                }) 
+            }
+
+            
+
+        </script>
+
+    </body>
+
+</html>

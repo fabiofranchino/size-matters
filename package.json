@@ -1,0 +1,23 @@
+{
+  "name": "towards-reusable-d3-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabiofranchino/towards-reusable-d3-components.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabiofranchino/towards-reusable-d3-components/issues"
+  },
+  "homepage": "https://github.com/fabiofranchino/towards-reusable-d3-components#readme",
+  "dependencies": {
+    "d3": "^4.10.0",
+    "normalize.css": "^7.0.0"
+  }
+}

@@ -1,0 +1,66 @@
+<html>
+
+    <head>
+        <script src="node_modules/d3/build/d3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="node_modules/normalize.css/normalize.css">
+
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="template.js"></script>
+
+    </head>
+
+    <body>
+
+        <div class="row">
+            <div class="one">
+                <svg width="1000" height="200"></svg>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="one">
+                <svg width="200" height="200"></svg>
+            </div>
+            <div class="two">
+                <svg width="400" height="200"></svg>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="one">
+                <svg width="200" height="100"></svg>
+            </div>
+            <div class="one">
+                <svg width="200" height="400"></svg>
+            </div>
+            <div class="one">
+                <svg width="200" height="300"></svg>
+            </div>
+            <div class="one">
+                <svg width="200" height="200"></svg>
+            </div>
+        </div>
+
+
+        <script>
+            
+            var vis = myViz()
+
+            var dataset = d3.range(7).map(d => {
+                return d3.range(3).map(d => Math.random())
+            })
+
+            var svg = d3.selectAll('svg')
+                .data(dataset)
+                .each(function() {
+                    var w = d3.select(this).attr('width')
+                    d3.select(this).call(vis.width(w))
+                })    
+                
+
+        </script>
+
+    </body>
+
+</html>
